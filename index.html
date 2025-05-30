@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="UPGRIS Digital Business Challenge 2025 - Kompetisi digital marketing untuk siswa SMA/SMK di Jawa Tengah. Daftar sekarang!" />
+    <title>UPGRIS Digital Business Challenge 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Enhanced Animations */
+        .animate-fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .animate-slide-in-left {
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideInLeft 0.6s ease-out forwards;
+        }
+        
+        .animate-slide-in-right {
+            opacity: 0;
+            transform: translateX(30px);
+            animation: slideInRight 0.6s ease-out forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Floating Animation */
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        /* Subtle Glow Effect */
+        .glow-effect {
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .glow-effect:hover {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+        }
+        
+        /* Interactive Background Particles */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: particleFloat 10s linear infinite;
+        }
+        
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-50px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Enhanced Card Hover Effects */
+        .stage-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stage-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transition: left 0.4s;
+        }
+        
+        .stage-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stage-card:hover::before {
+            left: 100%;
+        }
+        
+        /* Interactive Button Effects */
+        .btn-interactive {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-interactive::before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.5s;
+        }
+        
+        .btn-interactive:hover::before {
+            transform: translateX(100%);
+        }
+        
+        /* Countdown Styling */
+        .countdown-card {
+            position: relative;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            transition: all 0.3s ease;
+        }
+        
+        .countdown-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(13, 148, 136, 0.15);
+        }
+        
+        .countdown-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            padding: 2px;
+            background: linear-gradient(135deg, #0d9488, #3b82f6);
+            border-radius: inherit;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: subtract;
+            z-index: -1;
+        }
+        
+        /* Logo Responsive Sizing */
+        .logo-header {
+            width: 120px;
+            height: 90px;
+            max-width: 90%;
+        }
+        
+        .logo-footer {
+            width: 90px;
+            height: 60px;
+            max-width: 80%;
+        }
+        
+        @media (min-width: 768px) {
+            .logo-header {
+                height: 110px;
+                width: 140px;
+            }
+            .logo-footer {
+                height: 80px;
+                width: 110px;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .logo-header {
+                height: 130px;
+                width: 160px;
+            }
+            .logo-footer {
+                height: 100px;
+                width: 130px;
+            }
+        }
+        
+        /* Interactive Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #0d9488, #3b82f6);
+            z-index: 1000;
+            transition: width 0.3s ease;
+        }
+        
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #0d9488, #3b82f6);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transform: translateY(100px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .scroll-to-top.show {
+            transform: translateY(0);
+        }
+        
+        .scroll-to-top:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Interactive Section Dividers */
+        .section-divider {
+            position: relative;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #0d9488, transparent);
+            margin: 1.5rem 0;
+        }
+        
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            background: #0d9488;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.2); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+        
+        /* Text Gradient Effects */
+        .text-gradient {
+            background: linear-gradient(45deg, #1e3a8a, #0d9488, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Mobile-specific adjustments */
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 1.5rem; /* text-2xl */
+            }
+            h2 {
+                font-size: 1.25rem; /* text-xl */
+            }
+            .countdown-card {
+                padding: 0.5rem;
+                width: 3.5rem; /* w-14 */
+            }
+            .countdown-card span {
+                font-size: 1.25rem; /* text-xl */
+            }
+            .stage-card {
+                padding: 0.75rem;
+            }
+            .btn-interactive {
+                padding: 0.5rem 1rem;
+                font-size: 0.75rem; /* text-xs */
+            }
+            .logo-header {
+                height: 70px;
+                width: 90px;
+            }
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a8a',
+                        secondary: '#0d9488',
+                        accent: '#3b82f6',
+                        light: '#f3f4f6',
+                        dark: '#1f2937',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-light text-dark antialiased overflow-x-hidden">
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="scroll-to-top" id="scrollToTop" aria-label="Kembali ke atas">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    
+    <header class="bg-gradient-to-br from-primary to-secondary text-white py-6 sm:py-8 md:py-10 px-4 sm:px-6 md:px-8 text-center relative overflow-hidden">
+        <div class="particles" id="particles"></div>
+        <div class="relative z-10 animate-fade-in-up">
+            <div class="logo-header mx-auto mb-3 drop-shadow-md glow-effect rounded-lg flex items-center justify-center">
+                <img src="LOGO DBC putih.webp" alt="Logo DBC" class="max-w-full h-full object-contain">
+            </div>
+            <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mb-3 tracking-tight text-white drop-shadow-md">
+                UPGRIS Digital Business Challenge 2025
+            </h1>
+            <p class="text-sm sm:text-base md:text-lg mb-6 font-light max-w-xl mx-auto opacity-90">
+                Kompetisi Digital Marketing untuk Generasi Muda Jawa Tengah
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-3">
+                <a href="#" download="PANDUAN_TEKNIS_DBC_2025.pdf"
+                    class="btn-interactive bg-primary text-white hover:bg-gray-700 font-medium py-2 sm:py-3 px-4 sm:px-6 rounded-full shadow-md hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-1 flex items-center gap-2 text-xs sm:text-sm md:text-base glow-effect">
+                    <i class="fas fa-download"></i> Unduh Juknis
+                </a>
+                <a href="#register"
+                    class="btn-interactive bg-primary text-white hover:bg-gray-700 font-medium py-2 sm:py-3 px-4 sm:px-6 rounded-full shadow-md hover:shadow-lg transition-all duration-300 ease-in-out transform hover:-translate-y-1 flex items-center gap-2 text-xs sm:text-sm md:text-base glow-effect">
+                    <i class="fas fa-user-plus"></i> Daftar Sekarang
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <section id="countdown" class="py-12 sm:py-16 bg-gradient-to-r from-gray-50 to-gray-100">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-dark mb-6 observed-item">
+                <span class="text-gradient">Pendaftaran Ditutup Dalam:</span>
+                <span id="countdown-date-display" class="text-gradient">4 Juli 2025</span>
+            </h2>
+            <div id="timer" class="flex justify-center space-x-2 sm:space-x-4 md:space-x-6 text-secondary observed-item" style="animation-delay: 0.2s;">
+                <div class="countdown-card p-3 sm:p-4 md:p-6 rounded-xl shadow-lg w-14 sm:w-16 md:w-20 lg:w-24">
+                    <span id="days" class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold block">00</span>
+                    <p class="text-xs sm:text-sm text-gray-600 mt-2 font-medium">Hari</p>
+                </div>
+                <div class="countdown-card p-3 sm:p-4 md:p-6 rounded-xl shadow-lg w-14 sm:w-16 md:w-20 lg:w-24">
+                    <span id="hours" class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold block">00</span>
+                    <p class="text-xs sm:text-sm text-gray-600 mt-2 font-medium">Jam</p>
+                </div>
+                <div class="countdown-card p-3 sm:p-4 md:p-6 rounded-xl shadow-lg w-14 sm:w-16 md:w-20 lg:w-24">
+                    <span id="minutes" class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold block">00</span>
+                    <p class="text-xs sm:text-sm text-gray-600 mt-2 font-medium">Menit</p>
+                </div>
+                <div class="countdown-card p-3 sm:p-4 md:p-6 rounded-xl shadow-lg w-14 sm:w-16 md:w-20 lg:w-24">
+                    <span id="seconds" class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold block">00</span>
+                    <p class="text-xs sm:text-sm text-gray-600 mt-2 font-medium">Detik</p>
+                </div>
+            </div>
+            <p id="registration-closed-message" class="text-base sm:text-lg font-semibold text-red-600 mt-6 hidden">Pendaftaran telah ditutup.</p>
+        </div>
+    </section>
+    
+    <div class="section-divider"></div>
+    
+    <section id="about" class="py-12 sm:py-16 bg-light observed-item">
+        <div class="container mx-auto px-4">
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-8 text-center relative pb-6">
+                <span class="text-gradient">Tentang Kompetisi</span>
+                <span class="block w-20 sm:w-24 h-1 bg-gradient-to-r from-secondary to-accent mx-auto mt-4 rounded-full"></span>
+            </h2>
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <p class="text-center text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed">
+                        UPGRIS Digital Business Challenge 2025 adalah kompetisi digital marketing yang diselenggarakan oleh Himpunan Mahasiswa Bisnis Digital UPGRIS, dirancang untuk mengasah keterampilan digital generasi muda, khususnya siswa SMA/SMK di Jawa Tengah.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="section-divider"></div>
+    
+    <section id="stages" class="py-12 sm:py-16 bg-gradient-to-br from-light to-gray-50 observed-item">
+        <div class="container mx-auto px-4">
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-10 text-center relative pb-6">
+                <span class="text-gradient">Tahapan Kompetisi</span>
+                <span class="block w-20 sm:w-24 h-1 bg-gradient-to-r from-secondary to-accent mx-auto mt-4 rounded-full"></span>
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+                <div class="bg-white p-4 sm:p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center stage-card observed-item border border-gray-100">
+                    <div class="bg-gradient-to-br from-secondary to-teal-600 text-white rounded-full p-3 sm:p-4 mb-4 inline-flex shadow-md items-center justify-center" style="width: 60px; height: 60px;">
+                        <i class="fas fa-user-plus fa-lg"></i>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-bold text-dark mb-2">Pendaftaran</h3>
+                    <p class="text-accent font-semibold mb-2 text-xs bg-blue-50 px-2 py-1 rounded-full">4 Juni - 4 Juli 2025</p>
+                    <p class="text-gray-600 text-xs leading-relaxed">
+                        Peserta mendaftar melalui link/form yang disediakan.
+                    </p>
+                </div>
+                <div class="bg-white p-4 sm:p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center stage-card observed-item border border-gray-100" style="animation-delay: 0.1s;">
+                    <div class="bg-gradient-to-br from-secondary to-teal-600 text-white rounded-full p-3 sm:p-4 mb-4 inline-flex shadow-md items-center justify-center" style="width: 60px; height: 60px;">
+                        <i class="fas fa-users fa-lg"></i>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-bold text-dark mb-2">Technical Meeting 1</h3>
+                    <p class="text-accent font-semibold mb-2 text-xs bg-blue-50 px-2 py-1 rounded-full">7 Juli 2025</p>
+                    <p class="text-gray-600 text-xs leading-relaxed">
+                        Penjelasan teknis babak penyisihan dan alur lomba.
+                    </p>
+                </div>
+                <div class="bg-white p-4 sm:p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center stage-card observed-item border border-gray-100" style="animation-delay: 0.2s;">
+                    <div class="bg-gradient-to-br from-secondary to-teal-600 text-white rounded-full p-3 sm:p-4 mb-4 inline-flex shadow-md items-center justify-center" style="width: 60px; height: 60px;">
+                        <i class="fas fa-chalkboard-teacher fa-lg"></i>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-bold text-dark mb-2">Pelatihan BMC</h3>
+                    <p class="text-accent font-semibold mb-2 text-xs bg-blue-50 px-2 py-1 rounded-full">8 Juli 2025</p>
+                    <p class="text-gray-600 text-xs leading-relaxed">
+                        Pembekalan penyusunan Business Model Canvas.
+                    </p>
+                </div>
+                <div class="bg-white p-4 sm:p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center stage-card observed-item border border-gray-100" style="animation-delay: 0.3s;">
+                    <div class="bg-gradient-to-br from-secondary to-teal-600 text-white rounded-full p-3 sm:p-4 mb-4 inline-flex shadow-md items-center justify-center" style="width: 60px; height: 60px;">
+                        <i class="fas fa-tasks fa-lg"></i>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-bold text-dark mb-2">Babak Penyisihan</h3>
+                    <p class="text-accent font-semibold mb-2 text-xs bg-blue-50 px-2 py-1 rounded-full">7 - 17 Juli 2025</p>
+                    <p class="text-gray-600 text-xs leading-relaxed">
+                        Peserta mengerjakan tugas: riset, BMC, dan konten.
+                    </p>
+                </div>
+                <div class="bg-white p-4 sm:p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center stage-card observed-item border border-gray-100" style="animation-delay: 0.4s;">
+                    <div class="bg-gradient-to-br from-secondary to-teal-600 text-white rounded-full p-3 sm:p-4 mb-4 inline-flex shadow-md items-center justify-center" style="width: 60px; height: 60px;">
+                        <i class="fas fa-bullhorn fa-lg"></i>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-bold text-dark mb-2">Pengumuman Finalis</h3>
+                    <p class="text-accent font-semibold mb-2 text-xs bg-blue-50 px-2 py-1 rounded-full">28 Juli 2025</p>
+                    <p class="text-gray-600 text-xs leading-relaxed">
+                        Finalis diumumkan via Instagram @upgris.dbc.
+                    </p>
+                </div>
+                <div class="bg-white p-4 sm:p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center stage-card observed-item border border-gray-100" style="animation-delay: 0.5s;">
+                    <div class="bg-gradient-to-br from-secondary to-teal-600 text-white rounded-full p-3 sm:p-4 mb-4 inline-flex shadow-md items-center justify-center" style="width: 60px; height: 60px;">
+                        <i class="fas fa-trophy fa-lg"></i>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-bold text-dark mb-2">Babak Final</h3>
+                    <p class="text-accent font-semibold mb-2 text-xs bg-blue-50 px-2 py-1 rounded-full">29 Juli - 29 Agustus 2025</p>
+                    <p class="text-gray-600 text-xs leading-relaxed">
+                        Penjualan produk online dan laporan penjualan.
+                    </p>
+                </div>
+                <div class="bg-white p-4 sm:p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center stage-card observed-item border border-gray-100" style="animation-delay: 0.6s;">
+                    <div class="bg-gradient-to-br from-secondary to-teal-600 text-white rounded-full p-3 sm:p-4 mb-4 inline-flex shadow-md items-center justify-center" style="width: 60px; height: 60px;">
+                        <i class="fas fa-laptop fa-lg"></i>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-bold text-dark mb-2">Presentasi Final</h3>
+                    <p class="text-accent font-semibold mb-2 text-xs bg-blue-50 px-2 py-1 rounded-full">1 - 2 September 2025</p>
+                    <p class="text-gray-600 text-xs leading-relaxed">
+                        Presentasi laporan penjualan via Zoom.
+                    </p>
+                </div>
+                <div class="bg-white p-4 sm:p-5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center stage-card observed-item border border-gray-100" style="animation-delay: 0.7s;">
+                    <div class="bg-gradient-to-br from-secondary to-teal-600 text-white rounded-full p-3 sm:p-4 mb-4 inline-flex shadow-md items-center justify-center" style="width: 60px; height: 60px;">
+                        <i class="fas fa-award fa-lg"></i>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-bold text-dark mb-2">Pengumuman Pemenang</h3>
+                    <p class="text-accent font-semibold mb-2 text-xs bg-blue-50 px-2 py-1 rounded-full">8 September 2025</p>
+                    <p class="text-gray-600 text-xs leading-relaxed">
+                        Pengumuman pemenang dengan hadiah menarik.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="section-divider"></div>
+    
+    <section id="register" class="py-12 sm:py-16 bg-gradient-to-br from-primary via-secondary to-accent text-white observed-item relative overflow-hidden">
+        <div class="particles" id="particles2"></div>
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-bold mb-6">Siap Jadi Digital Marketer Muda?</h2>
+            <p class="text-sm sm:text-base md:text-lg mb-8 max-w-2xl mx-auto font-light">
+                Daftar sekarang dan kembangkan skill digital marketingmu untuk meraih hadiah keren!
+            </p>
+            <a href="#" class="btn-interactive bg-primary text-white hover:bg-gray-700 font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 text-sm sm:text-base md:text-lg glow-effect">
+                <i class="fas fa-user-plus mr-2"></i> DAFTAR SEKARANG
+            </a>
+        </div>
+    </section>
+    
+    <footer class="bg-gradient-to-br from-dark to-gray-800 text-gray-300 py-12 sm:py-16">
+        <div class="container mx-auto px-4 text-center">
+            <div class="logo-footer mx-auto mb-3 rounded-lg flex items-center justify-center">
+                <img src="LOGO DBC putih.webp" alt="Logo DBC" class="max-w-full h-full object-contain">
+            </div>
+            <p class="text-base sm:text-lg font-bold mb-2">Digital Business Challenge 2025</p>
+            <p class="text-xs sm:text-sm mb-4 text-gray-400">Himpunan Mahasiswa Bisnis Digital UPGRIS</p>
+            <div class="mb-6">
+                <p class="text-xs sm:text-sm text-gray-400 mb-1">Hubungi kami:</p>
+                <div class="flex justify-center items-center space-x-4">
+                    <a href="https://www.instagram.com/upgris.dbc" target="_blank" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <i class="fab fa-instagram fa-lg"></i> @upgris.dbc
+                    </a>
+                    <a href="mailto:dbchimabisdig@gmail.com" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <i class="fas fa-envelope fa-lg"></i> dbchimabisdig@gmail.com
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-6">
+                <p class="text-xs sm:text-sm text-gray-500">
+                    © <span id="currentYear"></span> Digital Business Challenge. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create animated particles - optimized for mobile
+            function createParticles(containerId, count = window.innerWidth < 640 ? 4 : 8) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                for (let i = 0; i < count; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.width = Math.random() * 3 + 2 + 'px';
+                    particle.style.height = particle.style.width;
+                    particle.style.animationDuration = Math.random() * 4 + 6 + 's';
+                    particle.style.animationDelay = Math.random() * 2 + 's';
+                    container.appendChild(particle);
+                }
+            }
+            
+            createParticles('particles', window.innerWidth < 640 ? 4 : 8);
+            createParticles('particles2', window.innerWidth < 640 ? 3 : 6);
+            
+            // Progress bar
+            function updateProgressBar() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+                const progressBar = document.getElementById('progressBar');
+                if (progressBar) {
+                    progressBar.style.width = scrollPercent + '%';
+                }
+            }
+            
+            // Scroll to top button
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            function toggleScrollToTop() {
+                if (scrollToTopBtn) {
+                    if (window.pageYOffset > 300) {
+                        scrollToTopBtn.classList.add('show');
+                    } else {
+                        scrollToTopBtn.classList.remove('show');
+                    }
+                }
+            }
+
+            if (scrollToTopBtn) {
+                scrollToTopBtn.addEventListener('click', function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // Intersection Observer for animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            function observerCallback(entries, observer) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.classList.contains('animate-fade-in-up') || 
+                            entry.target.classList.contains('animate-slide-in-left') ||
+                            entry.target.classList.contains('animate-slide-in-right') ||
+                            entry.target.classList.contains('observed-item')) {
+                            // Animations handled by CSS
+                        }
+                    }
+                });
+            }
+
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+            const elementsToObserve = document.querySelectorAll('.animate-fade-in-up, .animate-slide-in-left, .animate-slide-in-right, .observed-item');
+            elementsToObserve.forEach(el => observer.observe(el));
+            
+            // Event Listeners
+            window.addEventListener('scroll', () => {
+                updateProgressBar();
+                toggleScrollToTop();
+            });
+            updateProgressBar();
+            toggleScrollToTop();
+
+            // Countdown Timer Logic
+            function startCountdown() {
+                const countdownDate = new Date(2025, 6, 4, 0, 0, 0).getTime();
+                const daysEl = document.getElementById('days');
+                const hoursEl = document.getElementById('hours');
+                const minutesEl = document.getElementById('minutes');
+                const secondsEl = document.getElementById('seconds');
+                const timerEl = document.getElementById('timer');
+                const closedMessageEl = document.getElementById('registration-closed-message');
+                const countdownDateDisplayEl = document.getElementById('countdown-date-display');
+
+                if (!daysEl || !hoursEl || !minutesEl || !secondsEl || !timerEl || !closedMessageEl || !countdownDateDisplayEl) {
+                    console.error("One or more countdown elements are missing!");
+                    return;
+                }
+                
+                const targetDateObj = new Date(countdownDate);
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                countdownDateDisplayEl.textContent = targetDateObj.toLocaleDateString('id-ID', options);
+
+                const interval = setInterval(function() {
+                    const now = new Date().getTime();
+                    const distance = countdownDate - now;
+
+                    if (distance < 0) {
+                        clearInterval(interval);
+                        timerEl.style.display = 'none';
+                        closedMessageEl.classList.remove('hidden');
+                        countdownDateDisplayEl.textContent = "Telah Ditutup";
+                        daysEl.textContent = '00';
+                        hoursEl.textContent = '00';
+                        minutesEl.textContent = '00';
+                        secondsEl.textContent = '00';
+                        return;
+                    }
+
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    daysEl.textContent = String(days).padStart(2, '0');
+                    hoursEl.textContent = String(hours).padStart(2, '0');
+                    minutesEl.textContent = String(minutes).padStart(2, '0');
+                    secondsEl.textContent = String(seconds).padStart(2, '0');
+
+                }, 1000);
+            }
+
+            startCountdown();
+
+            // Set current year in footer
+            const currentYearEl = document.getElementById('currentYear');
+            if (currentYearEl) {
+                currentYearEl.textContent = new Date().getFullYear();
+            }
+        });
+    </script>
+</body>
+</html>
